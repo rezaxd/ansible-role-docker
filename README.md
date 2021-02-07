@@ -17,7 +17,7 @@ Available variables are listed below, along with default values (see `defaults/m
     docker_package: "docker-{{ docker_edition }}"
     docker_package_state: present
 
-The `docker_edition` should be either `ce` (Community Edition) or `ee` (Enterprise Edition). You can also specify a specific version of Docker to install using the distribution-specific format: Red Hat/CentOS: `docker-{{ docker_edition }}-<VERSION>`; Debian/Ubuntu: `docker-{{ docker_edition }}=<VERSION>`.
+The `docker_edition` should be either `ce` (Community Edition) or `ee` (Enterprise Edition). You can also specify a specific version of Docker to install using the distribution-specific format: Debian/Ubuntu: `docker-{{ docker_edition }}=<VERSION>`.
 
 You can control whether the package is installed, uninstalled, or at the latest version by setting `docker_package_state` to `present`, `absent`, or `latest`, respectively. Note that the Docker daemon will be automatically restarted if the Docker package is updated. This is a side effect of flushing all handlers (running any of the handlers that have been notified by this and any other role up to this point in the play).
 
@@ -43,16 +43,6 @@ Docker Compose installation options.
 
 You can change `docker_apt_gpg_key` to a different url if you are behind a firewall or provide a trustworthy mirror.
 Usually in combination with changing `docker_apt_repository` as well.
-
-    docker_yum_repo_url: https://download.docker.com/linux/centos/docker-{{ docker_edition }}.repo
-    docker_yum_repo_enable_nightly: '0'
-    docker_yum_repo_enable_test: '0'
-    docker_yum_gpg_key: https://download.docker.com/linux/centos/gpg
-
-(Used only for RedHat/CentOS.) You can enable the Nightly or Test repo by setting the respective vars to `1`.
-
-You can change `docker_yum_gpg_key` to a different url if you are behind a firewall or provide a trustworthy mirror.
-Usually in combination with changing `docker_yum_repository` as well.
 
     docker_users:
       - user1
